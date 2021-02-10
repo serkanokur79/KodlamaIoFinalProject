@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -23,19 +24,19 @@ namespace Business.Concrete
         {
             if(product.ProductName.Length < 2)
             {
-                return new ErrorResult("Product Name must be at least two characters");
+                return new ErrorResult(Messages.ProductNameInvalid);
             }
             _productDal.Add(product);
-            return new SuccessResult();
+            return new SuccessResult(Messages.ProductAdded);
         }
 
-        public List<Product> GetAll()
+        public IDataResult<List<Product>> GetAll()
         {
             //Business Codes
-            return _productDal.GetAll();
+            return new DataResult(_productDal.GetAll();
         }
 
-        public List<Product> GetAllByCategoryId(int Id)
+        public IDataResult<List<Product>> GetAllByCategoryId(int Id)
         {
             return _productDal.GetAll(p => p.CategoryId == Id);
         }
@@ -45,7 +46,7 @@ namespace Business.Concrete
             return _productDal.Get(p => p.ProductId == productId);
         }
 
-        public List<Product> GetByUnitPrice(decimal min, decimal max)
+        public IDataResult<List<Product>> GetByUnitPrice(decimal min, decimal max)
         {
             return _productDal.GetAll(p => p.UnitPrice >= min && p.UnitPrice <= max);
 
