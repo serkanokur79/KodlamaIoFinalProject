@@ -1,6 +1,8 @@
-﻿using Entities.Concrete;
+﻿using Core.Entities.Concrete;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Business.Constants
@@ -17,5 +19,14 @@ namespace Business.Constants
         public static string ProductNameExist = "There is another product with the same product name";
 
         public static string CategoryLimitExceeded = "New Product addition is blocked since Category Limit exceeded";
+
+        public static string AuthorizationDenied = "You don't have authorization for this";
+
+        public static string UserNotFound = "User not found!";
+        public static string UserRegistered = "User registered!";
+        public static string UserAlreadyExists = "User already exists";
+        public static string AccessTokenCreated = "Access Token Created";
+        public static string SuccessfulLogin = "Login Successful";
+        public static string PasswordError = "Password Error";
     }
 }
